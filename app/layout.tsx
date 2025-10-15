@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CookieConsent } from "@/components/cookie-consent";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteMetadata } from "@/lib/site-metadata";
@@ -30,6 +31,7 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </div>
+        <CookieConsent />
       </body>
     </html>
   );
