@@ -1,0 +1,47 @@
+---
+title: "上线前必须通过的内容治理 Checklist"
+summary: "从隐私合规、错误监控到灰度回滚，确保每次发布都有迹可循。"
+topic: workflow-intelligence
+publishedAt: "2025-01-08"
+tags:
+  - 治理
+  - 监控
+  - 上线检查
+status: "published"
+---
+
+## 治理目标
+
+上线前的治理工作不仅是形式审查，更需要验证性能、安全和可观测性指标是否达标。建议在 CI 阶段引入自动化检查脚本，部署前通过一次完整的“落地检查清单”。
+
+### Checklist 模板
+
+| 维度     | 检查项                             | 工具/脚本                        |
+| -------- | ---------------------------------- | -------------------------------- |
+| 元数据   | 页面标题、描述、结构化数据是否齐全 | `pnpm lint:meta`                 |
+| 安全     | CSP、REFERRER、HSTS 等响应头       | `node scripts/assert-headers.js` |
+| 性能     | LCP、CLS、INP 是否达标             | Lighthouse CI + WebPageTest      |
+| 回滚策略 | CDN 缓存刷新、版本目录是否预置     | `./release.sh --dry-run`         |
+
+## 自动化脚本建议
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+targets=(
+  "https://example.com/"
+  "https://example.com/topics"
+  "https://example.com/articles"
+)
+
+for url in "${targets[@]}"; do
+  node scripts/check-meta.js --url "$url"
+done
+```
+
+## 最终验收
+
+- 完整报告 output JSON 存档在 OSS，便于审计。
+- 所有阻断项在发布前关闭，并在变更记录中注明责任人。
+- 生产问题复盘需要回溯到此次治理记录。

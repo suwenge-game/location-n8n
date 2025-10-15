@@ -1,0 +1,58 @@
+{
+  "name": "location-n8n",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "contentlayer dev --next dev",
+    "build": "contentlayer build && next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
+    "prepare": "husky",
+    "commitlint": "commitlint"
+  },
+  "dependencies": {
+    "contentlayer": "^0.3.4",
+    "github-slugger": "^2.0.0",
+    "mdast-util-to-string": "^4.0.0",
+    "next": "15.5.5",
+    "next-contentlayer": "^0.3.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "reading-time": "^1.5.0",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-pretty-code": "^0.14.1",
+    "rehype-slug": "^6.0.0",
+    "remark": "^15.0.1",
+    "remark-autolink-headings": "^8.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-slug": "^8.0.0",
+    "shiki": "^3.13.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.5",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.4",
+    "prettier": "^3.6.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --max-warnings=0",
+      "prettier --check"
+    ],
+    "*.{mjs,cjs,json,css,scss,md,mdx}": "prettier --check"
+  }
+}
