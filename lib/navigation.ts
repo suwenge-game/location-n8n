@@ -16,4 +16,5 @@ export const SECONDARY_NAV: NavItem[] = [
   { label: "项目概览", href: "/about" },
   { label: "隐私政策", href: "/privacy" },
   { label: "用户协议", href: "/terms" },
+  { label: "Cookie 使用说明", href: "/cookies" },
 ];

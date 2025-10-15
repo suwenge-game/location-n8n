@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CookiePreferencesTrigger } from "@/components/cookie-consent";
 import { SECONDARY_NAV } from "@/lib/navigation";
 import { siteMetadata } from "@/lib/site-metadata";
 
@@ -25,6 +26,9 @@ export function SiteFooter() {
             </Link>
           ))}
         </div>
+        <CookiePreferencesTrigger className="text-xs font-medium text-neutral-500 underline underline-offset-4 transition-colors hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-white">
+          管理 Cookie 偏好
+        </CookiePreferencesTrigger>
         <p className="text-xs text-neutral-400 dark:text-neutral-500">
           © {year} {siteMetadata.shortName}. 保留所有权利。
         </p>
