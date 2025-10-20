@@ -54,7 +54,6 @@ export function TemplateLibraryBrowser({
       const params = serializeTemplateFilters(nextFilters);
       const query = params.toString();
       const target = query ? `${pathname}?${query}` : pathname;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.replace(target as any, { scroll: false });
     },
     [pathname, router],
