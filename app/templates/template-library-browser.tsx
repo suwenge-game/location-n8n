@@ -54,7 +54,7 @@ export function TemplateLibraryBrowser({
       const params = serializeTemplateFilters(nextFilters);
       const query = params.toString();
       const target = query ? `${pathname}?${query}` : pathname;
-      router.replace(target as any, { scroll: false });
+      router.replace(target as string, { scroll: false });
     },
     [pathname, router],
   );
