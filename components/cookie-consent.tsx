@@ -107,21 +107,18 @@ export function CookieConsent() {
     };
   }, [preferencesOpen]);
 
-  const applyConsent = useCallback(
-    (next: DraftConsent) => {
-      const result: ConsentState = {
-        necessary: true,
-        analytics: next.analytics,
-        marketing: next.marketing,
-        updatedAt: new Date().toISOString(),
-      };
-      setConsent(result);
-      persistConsent(result);
-      setPreferencesOpen(false);
-      setShowBanner(false);
-    },
-    []
-  );
+  const applyConsent = useCallback((next: DraftConsent) => {
+    const result: ConsentState = {
+      necessary: true,
+      analytics: next.analytics,
+      marketing: next.marketing,
+      updatedAt: new Date().toISOString(),
+    };
+    setConsent(result);
+    persistConsent(result);
+    setPreferencesOpen(false);
+    setShowBanner(false);
+  }, []);
 
   const handleAcceptAll = useCallback(() => {
     applyConsent({ analytics: true, marketing: true });
@@ -143,7 +140,10 @@ export function CookieConsent() {
     }
   }, []);
 
-  const bannerVisible = useMemo(() => showBanner && !preferencesOpen, [showBanner, preferencesOpen]);
+  const bannerVisible = useMemo(
+    () => showBanner && !preferencesOpen,
+    [showBanner, preferencesOpen],
+  );
 
   return (
     <>
@@ -152,9 +152,12 @@ export function CookieConsent() {
           <div className="mx-auto max-w-3xl rounded-2xl border border-neutral-200 bg-white/95 p-6 shadow-xl backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/95">
             <div className="space-y-4">
               <div className="space-y-2">
-                <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Cookie 使用说明</h2>
+                <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
+                  Cookie 使用说明
+                </h2>
                 <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-                  我们会使用必要的 Cookie 保证站点正常运行；若您同意，也会使用分析 Cookie 帮助我们了解内容表现。您可以随时在偏好设置中修改选择。
+                  我们会使用必要的 Cookie 保证站点正常运行；若您同意，也会使用分析 Cookie
+                  帮助我们了解内容表现。您可以随时在偏好设置中修改选择。
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
@@ -207,7 +210,8 @@ export function CookieConsent() {
                   Cookie 偏好设置
                 </h2>
                 <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-                  根据类别选择是否允许我们收集额外的数据。必要 Cookie 将始终启用，以保障站点的基础功能。
+                  根据类别选择是否允许我们收集额外的数据。必要 Cookie
+                  将始终启用，以保障站点的基础功能。
                 </p>
               </div>
               <button
@@ -232,7 +236,9 @@ export function CookieConsent() {
               <section className="rounded-xl border border-neutral-200 bg-neutral-50/80 p-4 dark:border-neutral-700 dark:bg-neutral-800/60">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">必要 Cookie</h3>
+                    <h3 className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">
+                      必要 Cookie
+                    </h3>
                     <p className="mt-1 text-xs leading-relaxed text-neutral-600 dark:text-neutral-300/80">
                       用于记住登录状态、保存您的隐私设置等关键站点功能，无法被关闭。
                     </p>
@@ -245,7 +251,9 @@ export function CookieConsent() {
 
               <label className="flex items-start justify-between gap-4 rounded-xl border border-neutral-200 p-4 transition-colors hover:border-neutral-300 dark:border-neutral-700 dark:hover:border-neutral-600">
                 <div className="space-y-1">
-                  <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">分析 Cookie</span>
+                  <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">
+                    分析 Cookie
+                  </span>
                   <p className="text-xs leading-relaxed text-neutral-600 dark:text-neutral-300/80">
                     帮助我们统计页面浏览量与事件，了解不同内容的表现，优化产品体验。
                   </p>
@@ -262,7 +270,9 @@ export function CookieConsent() {
 
               <label className="flex items-start justify-between gap-4 rounded-xl border border-neutral-200 p-4 transition-colors hover:border-neutral-300 dark:border-neutral-700 dark:hover:border-neutral-600">
                 <div className="space-y-1">
-                  <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">营销 Cookie</span>
+                  <span className="text-sm font-semibold text-neutral-800 dark:text-neutral-100">
+                    营销 Cookie
+                  </span>
                   <p className="text-xs leading-relaxed text-neutral-600 dark:text-neutral-300/80">
                     用于个性化推荐和活动通知，目前仅在订阅邮件中使用，帮助我们发送与您更相关的更新。
                   </p>

@@ -42,7 +42,8 @@ export default function PrivacyPage() {
             所有个人信息存储于位于中国大陆的云服务商数据中心，并通过访问控制、日志审计与定期备份保障安全。除法律法规要求或征得您的明确同意，我们不会向第三方提供个人信息。
           </p>
           <p>
-            统计数据仅以聚合形式分析，不与单个用户建立关联。Cookie 授权记录最长保留 12 个月，届满后会重新征求您的同意。
+            统计数据仅以聚合形式分析，不与单个用户建立关联。Cookie 授权记录最长保留 12
+            个月，届满后会重新征求您的同意。
           </p>
         </div>
       </section>
@@ -52,9 +53,15 @@ export default function PrivacyPage() {
         <div className="space-y-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
           <p>您拥有以下权利：</p>
           <ul className="list-disc space-y-1 pl-6">
-            <li>撤回同意：可通过页面底部的“管理 Cookie 偏好”入口调整非必要 Cookie 设置，邮件订阅亦可随时退订；</li>
+            <li>
+              撤回同意：可通过页面底部的“管理 Cookie 偏好”入口调整非必要 Cookie
+              设置，邮件订阅亦可随时退订；
+            </li>
             <li>访问与更正：可向我们索取个人信息副本，并对不准确内容提出更正申请；</li>
-            <li>删除与限制：如需删除账户信息或限制处理活动，请通过下方联系方式告知，我们将在 3 个工作日内反馈。</li>
+            <li>
+              删除与限制：如需删除账户信息或限制处理活动，请通过下方联系方式告知，我们将在 3
+              个工作日内反馈。
+            </li>
           </ul>
         </div>
       </section>
@@ -62,7 +69,8 @@ export default function PrivacyPage() {
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">联系方式</h2>
         <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
-          如对隐私政策或数据处理有任何疑问，可发送邮件至 hi@autoflow.example.com，我们会尽快回应并跟进处理进度。
+          如对隐私政策或数据处理有任何疑问，可发送邮件至
+          hi@autoflow.example.com，我们会尽快回应并跟进处理进度。
         </p>
       </section>
     </div>
