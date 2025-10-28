@@ -15,7 +15,7 @@
 
 # next.js
 /.next/
-/out/
+# /out/  # 注释掉，让Cloudflare Pages可以访问静态文件
 /.contentlayer/
 
 # production

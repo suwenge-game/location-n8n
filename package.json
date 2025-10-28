@@ -53,7 +53,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "eslint --max-warnings=0",
+      "eslint --max-warnings=0 --no-warn-ignored",
       "prettier --check"
     ],
     "*.{mjs,cjs,json,css,scss,md,mdx}": "prettier --check"
