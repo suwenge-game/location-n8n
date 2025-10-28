@@ -168,3 +168,86 @@ git commit -m "feat: 描述你的更改"
 # 5. 推送代码
 git push
 ```
+
+## GitHub手动提交流程
+
+当遇到网络连接问题无法使用命令行推送时，可以通过GitHub网页界面手动提交文件：
+
+### 1. 访问GitHub仓库
+
+打开浏览器访问：https://github.com/suwenge-game/location-n8n
+
+### 2. 上传单个文件
+
+1. 点击仓库页面右上角的 **"Add file"** 按钮
+2. 选择 **"Upload files"**
+3. 将本地文件拖拽到上传区域，或点击 **"choose your files"** 选择文件
+4. 在页面底部填写提交信息：
+   - **Commit message**: 描述你的更改（如：`feat: 添加新功能`）
+   - **Add an optional extended description**: 可选的详细描述
+5. 选择提交方式：
+   - **Commit directly to the main branch**: 直接提交到主分支
+   - **Create a new branch for this commit and start a pull request**: 创建新分支并开启PR
+6. 点击 **"Commit changes"** 完成提交
+
+### 3. 创建新文件
+
+1. 点击 **"Add file"** → **"Create new file"**
+2. 输入文件名（如：`new-feature.js`）
+3. 在编辑器中输入文件内容
+4. 滚动到页面底部填写提交信息
+5. 点击 **"Commit new file"** 完成创建
+
+### 4. 编辑现有文件
+
+1. 在仓库中找到要编辑的文件
+2. 点击文件名进入文件页面
+3. 点击右上角的 **"Edit this file"** 按钮（铅笔图标）
+4. 在编辑器中修改文件内容
+5. 滚动到页面底部填写提交信息
+6. 点击 **"Commit changes"** 完成修改
+
+### 5. 删除文件
+
+1. 进入要删除的文件页面
+2. 点击右上角的 **"Delete this file"** 按钮（垃圾桶图标）
+3. 填写删除原因的提交信息
+4. 点击 **"Commit changes"** 确认删除
+
+### 6. 批量上传文件
+
+1. 点击 **"Add file"** → **"Upload files"**
+2. 选择多个文件或整个文件夹
+3. 等待文件上传完成
+4. 填写提交信息
+5. 点击 **"Commit changes"** 完成批量上传
+
+### 7. 手动提交的优势
+
+- **无需网络配置**：不依赖本地网络环境
+- **可视化操作**：直观的文件管理界面
+- **版本控制**：自动生成提交历史
+- **协作友好**：团队成员可以轻松查看和编辑
+
+### 8. 注意事项
+
+- 大文件（>100MB）建议使用Git LFS或命令行工具
+- 敏感信息（如密码、密钥）不要通过网页提交
+- 建议使用有意义的提交信息，便于后续维护
+- 定期使用命令行同步本地和远程仓库
+
+### 9. 同步本地仓库
+
+手动提交后，需要同步本地仓库：
+
+```bash
+# 拉取远程更改
+git pull
+
+# 查看状态
+git status
+
+# 如果有冲突，解决后提交
+git add .
+git commit -m "sync: 同步远程更改"
+```
