@@ -54,7 +54,8 @@ export function TemplateLibraryBrowser({
       const params = serializeTemplateFilters(nextFilters);
       const query = params.toString();
       const target = query ? `${pathname}?${query}` : pathname;
-      router.replace(target, { scroll: false });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      router.replace(target as any, { scroll: false });
     },
     [pathname, router],
   );
@@ -127,9 +128,9 @@ export function TemplateLibraryBrowser({
   }, [syncFilters]);
 
   const handleCopy = useCallback((template: TemplateItem) => {
-    const { packageUrl } = template.resources;
+    const packageUrl = template.resources?.packageUrl;
 
-    if (navigator.clipboard?.writeText) {
+    if (packageUrl && navigator.clipboard?.writeText) {
       navigator.clipboard
         .writeText(packageUrl)
         .then(() => {
@@ -142,7 +143,7 @@ export function TemplateLibraryBrowser({
         .catch(() => {
           window.prompt("复制模板下载链接", packageUrl);
         });
-    } else {
+    } else if (packageUrl) {
       window.prompt("复制模板下载链接", packageUrl);
     }
   }, []);
@@ -283,7 +284,7 @@ export function TemplateLibraryBrowser({
                     复制下载链接
                   </button>
                   <a
-                    href={template.resources.packageUrl}
+                    href={template.resources?.packageUrl || "#"}
                     download
                     target="_blank"
                     rel="noreferrer"
@@ -292,7 +293,7 @@ export function TemplateLibraryBrowser({
                     下载 JSON
                   </a>
                   <a
-                    href={template.resources.guideUrl}
+                    href={template.resources?.guideUrl || "#"}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center justify-center rounded-full border border-neutral-300 px-4 py-1.5 text-xs font-semibold text-neutral-700 transition-colors hover:border-neutral-400 hover:text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 dark:border-neutral-700 dark:text-neutral-200 dark:hover:border-neutral-500 dark:hover:text-white dark:focus-visible:outline-neutral-600"

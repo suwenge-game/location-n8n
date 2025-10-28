@@ -53,7 +53,10 @@ export function parseTemplateFiltersFromObject(
     platforms: uniqueOrdered(toArray(params[PARAM_KEYS.platforms])),
     difficulties: uniqueOrdered(toArray(params[PARAM_KEYS.difficulties])),
     tags: uniqueOrdered(toArray(params[PARAM_KEYS.tags])),
-    query: typeof params[PARAM_KEYS.query] === "string" ? params[PARAM_KEYS.query].trim() : "",
+    query:
+      typeof params[PARAM_KEYS.query] === "string"
+        ? (params[PARAM_KEYS.query] as string).trim()
+        : "",
   };
 }
 

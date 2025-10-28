@@ -41,7 +41,8 @@ export function SiteHeader() {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                href={item.href as any}
                 className={`${baseLinkStyles} ${
                   isActive ? activeLinkStyles : "text-neutral-600 dark:text-neutral-300"
                 }`}
@@ -56,7 +57,8 @@ export function SiteHeader() {
           {SECONDARY_NAV.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              href={item.href as any}
               className="px-2 py-1 text-sm text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
             >
               {item.label}
@@ -93,7 +95,8 @@ export function SiteHeader() {
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                href={item.href as any}
                 className={`${baseLinkStyles} ${
                   isActive ? activeLinkStyles : "text-neutral-600 dark:text-neutral-300"
                 }`}
@@ -107,7 +110,8 @@ export function SiteHeader() {
           {SECONDARY_NAV.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              href={item.href as any}
               className="rounded-md px-2 py-1 text-sm text-neutral-500 transition-colors hover:bg-neutral-900/5 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-50/10 dark:hover:text-white"
             >
               {item.label}

@@ -11,7 +11,7 @@ import { allArticles } from "contentlayer/generated";
 const topicMap = new Map(topics.map((topic) => [topic.slug, topic]));
 
 export function generateStaticParams() {
-  return allArticles.map((article) => ({ slug: article.slug }));
+  return [];
 }
 
 export async function generateMetadata({

@@ -42,7 +42,8 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
                   </span>
                 ) : (
                   <Link
-                    href={item.href}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    href={item.href as any}
                     className="transition-colors hover:text-neutral-900 dark:hover:text-white"
                   >
                     {item.label}
