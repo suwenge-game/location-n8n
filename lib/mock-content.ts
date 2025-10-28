@@ -1,3 +1,16 @@
+export type Article = {
+  slug: string;
+  title: string;
+  summary: string;
+  publishedAt: string;
+  status: "published" | "draft";
+  tags: string[];
+  topic?: string;
+  readingTime?: {
+    minutes: number;
+  };
+};
+
 export type Topic = {
   slug: string;
   title: string;
@@ -21,6 +34,39 @@ export type TemplateItem = {
     packageUrl?: string;
   };
 };
+
+export const mockArticles: Article[] = [
+  {
+    slug: "content-governance-checklist",
+    title: "上线前必须通过的内容治理 Checklist",
+    summary: "从隐私合规、错误监控到灰度回滚，确保每次发布都有迹可循。",
+    publishedAt: "2025-01-08",
+    status: "published",
+    tags: ["治理"],
+    topic: "workflow-intelligence",
+    readingTime: { minutes: 5 },
+  },
+  {
+    slug: "growth-loop-design",
+    title: "增长飞轮：从 RSS 到站外矩阵的内容分发策略",
+    summary: "结合 RSS、邮件订阅与知乎/公众号分发，建立自动化增长飞轮，持续导入高质量流量。",
+    publishedAt: "2024-12-22",
+    status: "published",
+    tags: ["增长"],
+    topic: "wechat-automation",
+    readingTime: { minutes: 8 },
+  },
+  {
+    slug: "wechat-article-pipeline",
+    title: "微信公众号文章流水线",
+    summary: "从采集到发布的完整自动化流程，提高内容生产效率。",
+    publishedAt: "2024-12-15",
+    status: "published",
+    tags: ["自动化"],
+    topic: "wechat-automation",
+    readingTime: { minutes: 6 },
+  },
+];
 
 export const topics: Topic[] = [
   {

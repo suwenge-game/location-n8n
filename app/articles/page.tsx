@@ -4,11 +4,11 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { formatDate, formatReadingTime } from "@/lib/formatters";
 import { topics } from "@/lib/mock-content";
-import { allArticles } from "contentlayer/generated";
+import { mockArticles } from "@/lib/mock-content";
 
 const topicMap = new Map(topics.map((topic) => [topic.slug, topic.title]));
 
-const publishedArticles = allArticles
+const publishedArticles = mockArticles
   .filter((article) => article.status !== "draft")
   .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
@@ -42,7 +42,7 @@ export default function ArticlesPage() {
           >
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-neutral-400">
-                <span>{topicMap.get(article.topic) ?? "未分类"}</span>
+                <span>{topicMap.get(article.topic || "") ?? "未分类"}</span>
                 <span>·</span>
                 <span>{article.tags.join(" / ")}</span>
               </div>

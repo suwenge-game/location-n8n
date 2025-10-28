@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { formatDate, formatReadingTime } from "@/lib/formatters";
 import { getTopic, templateLibrary, topics } from "@/lib/mock-content";
-import { allArticles } from "contentlayer/generated";
+import { mockArticles } from "@/lib/mock-content";
 
 export function generateStaticParams() {
   return topics.map((topic) => ({ slug: topic.slug }));
@@ -37,7 +37,7 @@ export default async function TopicDetailPage({ params }: { params: Promise<{ sl
     notFound();
   }
 
-  const relatedArticles = allArticles
+  const relatedArticles = mockArticles
     .filter((article) => article.topic === topic.slug && article.status !== "draft")
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
   const recommendedTemplates = templateLibrary.slice(0, 2);

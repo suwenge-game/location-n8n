@@ -1,9 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import { allArticles } from "contentlayer/generated";
-
-import { templateLibrary, topics } from "@/lib/mock-content";
+import { templateLibrary, topics, mockArticles } from "@/lib/mock-content";
 import { formatDate, formatReadingTime } from "@/lib/formatters";
 import { siteMetadata } from "@/lib/site-metadata";
 
@@ -18,7 +16,7 @@ export const metadata: Metadata = {
   description: siteMetadata.description,
 };
 
-const PUBLISHED_ARTICLES = allArticles
+const PUBLISHED_ARTICLES = mockArticles
   .filter((article) => article.status !== "draft")
   .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 

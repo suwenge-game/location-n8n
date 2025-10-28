@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 // import { MdxContent } from "@/components/mdx/mdx-content";
-import { TableOfContents } from "@/components/mdx/table-of-contents";
+// import { TableOfContents } from "@/components/mdx/table-of-contents";
 import { formatDate, formatReadingTime } from "@/lib/formatters";
 import { getTopic, topics } from "@/lib/mock-content";
 // import { allArticles } from "contentlayer/generated";
@@ -109,7 +109,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
   }
 
   const topic = topicMap.get(article.topic);
-  const toc = (article.toc ?? []) as Array<{ depth: number; value: string; slug: string }>;
+  // const toc = (article.toc ?? []) as Array<{ depth: number; value: string; slug: string }>;
 
   return (
     <article className="space-y-10">
@@ -148,9 +148,7 @@ export default async function ArticleDetailPage({ params }: { params: Promise<{ 
         <div className="prose prose-neutral max-w-none dark:prose-invert">
           <SimpleMdxContent code={article.body.code} />
         </div>
-        <aside className="lg:sticky lg:top-32">
-          <TableOfContents items={toc} />
-        </aside>
+        <aside className="lg:sticky lg:top-32">{/* <TableOfContents items={toc} /> */}</aside>
       </div>
     </article>
   );

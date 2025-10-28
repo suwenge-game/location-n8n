@@ -1,11 +1,8 @@
 {
-  "name": "location-n8n",
-  "version": "0.1.0",
-  "private": true,
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:contentlayer": "contentlayer build && next build",
     "export": "next build && next export",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
@@ -15,11 +12,9 @@
     "commitlint": "commitlint"
   },
   "dependencies": {
-    "contentlayer": "^0.3.4",
     "github-slugger": "^2.0.0",
     "mdast-util-to-string": "^4.0.0",
     "next": "15.5.5",
-    "next-contentlayer": "^0.3.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "reading-time": "^1.5.0",
