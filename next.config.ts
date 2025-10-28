@@ -1,8 +1,13 @@
-import { withContentlayer } from "next-contentlayer";
+import type { NextConfig } from "next";
 
-const config = {
+const config: NextConfig = {
   reactStrictMode: true,
   typedRoutes: true,
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
 };
 
-export default withContentlayer(config);
+export default config;
