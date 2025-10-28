@@ -1,6 +1,7 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import readingTime from "reading-time";
-import { remark } from "remark";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import { visit } from "unist-util-visit";
 import GithubSlugger from "github-slugger";
@@ -11,8 +12,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 // import rehypePrettyCode from "rehype-pretty-code";
 
 const getTableOfContents = (raw: string) => {
-  console.log("Generating TOC");
-  const tree = remark().use(remarkGfm).parse(raw);
+  const tree = unified().use(remarkParse).use(remarkGfm).parse(raw);
   const slugger = new GithubSlugger();
   const headings: Array<{ depth: number; value: string; slug: string }> = [];
 

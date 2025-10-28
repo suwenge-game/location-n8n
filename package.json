@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "contentlayer dev --next dev",
-    "build": "contentlayer build && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --check .",
@@ -24,11 +24,12 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.14.1",
     "rehype-slug": "^6.0.0",
-    "remark": "^15.0.1",
     "remark-autolink-headings": "^8.0.0",
-    "remark-gfm": "^4.0.1",
+    "remark-gfm": "3.0.1",
+    "remark-parse": "10.0.1",
     "remark-slug": "^8.0.0",
     "shiki": "^3.13.0",
+    "unified": "10.1.2",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
