@@ -16,6 +16,10 @@ export type TemplateItem = {
   difficulty: "入门" | "进阶" | "专家";
   updatedAt: string;
   tags: string[];
+  resources?: {
+    guideUrl?: string;
+    packageUrl?: string;
+  };
 };
 
 export const topics: Topic[] = [

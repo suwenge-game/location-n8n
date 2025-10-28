@@ -1,0 +1,320 @@
+diff --git a/README.md b/README.md
+index e215bc4..853ad60 100644
+--- a/README.md
++++ b/README.md
+@@ -1,36 +1,92 @@
+-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
++## AutoFlow Automation Lab
+ 
+-## Getting Started
++闈㈠悜鍐呭鍥㈤槦鐨勮嚜鍔ㄥ寲澧為暱绔欑偣锛屽洿缁曢噰闆嗐€佹不鐞嗐€佸垎鍙戝拰鐩戞帶鏋勫缓鍙鐢ㄧ殑宸ヤ綔娴佹ā鏉垮簱锛屽苟鍖归厤鍥藉唴鐩戠鐜涓嬬殑鍚堣涓庢妧鏈熀绾裤€? 
+-First, run the development server:
++椤圭洰浠?Next.js App Router + Contentlayer 涓烘牳蹇冿紝閰嶅悎 Tailwind CSS 4銆丒SLint/Prettier銆丠usky/commitlint 绛夊伐绋嬭鑼冦€?+
++---
++
++## 蹇€熷紑濮?+
++1. 瀹夎渚濊禆锛堟帹鑽愪娇鐢?corepack 绠＄悊 yarn 1.x锛?+
++   ```bash
++   corepack yarn install
++   ```
++
++2. 鍚姩寮€鍙戠幆澧冿紙`withContentlayer` 浼氬湪 Next.js 寮€鍙戞ā寮忎笅鑷姩瑙﹀彂鍐呭缂栬瘧锛?+
++   ```bash
++   yarn dev
++   ```
++
++3. 璁块棶 `http://localhost:3000` 鏌ョ湅绔欑偣锛屽唴瀹规簮鑷?`content/` 鐩綍涓嬬殑 Markdown/JSON銆?+
++---
++
++## 甯哥敤鑴氭湰
+ 
+ ```bash
+-npm run dev
+-# or
+-yarn dev
+-# or
+-pnpm dev
+-# or
+-bun dev
++yarn dev      # 鏈湴寮€鍙戯紙Contentlayer + Next.js锛?+yarn build    # 闈欐€佸鍑轰骇鐗?+yarn start    # 棰勮 build 缁撴灉
++yarn lint     # ESLint锛堥渶鍏?yarn install锛?+yarn format   # Prettier 妫€鏌?+yarn format:write  # Prettier 鑷姩淇
+ ```
+ 
+-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
++> 娉ㄦ剰锛氬綋鍓嶄粨搴撳皻鏈墽琛?`yarn install`锛屽湪杩愯 lint/build 鍓嶉渶鍏堝畨瑁呬緷璧栥€?+
++---
++
++## CI/CD 閮ㄧ讲娴佺▼
++
++- `.github/workflows/deploy.yml` 浼氬湪鎺ㄩ€佸埌 `main` 鎴栨墜鍔ㄨЕ鍙戞椂杩愯锛氫緷娆℃墽琛屼緷璧栧畨瑁呫€乣yarn lint`銆乣yarn build`锛岄殢鍚庤皟鐢?`scripts/deploy.sh` 灏?`out/` 涓婁紶鑷抽樋閲屼簯 OSS銆?+- `scripts/deploy.sh` 浼氬湪缂哄皯鏈湴 `ossutil64` 鏃惰嚜鍔ㄤ笅杞斤紝骞舵敮鎸佸彲閫夌殑 CDN 鍒锋柊璇锋眰銆?+- 濡傞渶鑷畾涔変笂浼犲墠缂€銆丆DN 鍒锋柊鏂瑰紡锛屽彲閫氳繃 GitHub **Repository variables** 璋冩暣銆?+
++| 鍚嶇О                    | 绫诲瀷             | 璇存槑                                                             |
++| ----------------------- | ---------------- | ---------------------------------------------------------------- |
++| `OSS_BUCKET`            | Secret           | OSS Bucket 鍚嶇О锛堜笉鍚?`oss://` 鍓嶇紑锛夈€?                         |
++| `OSS_ENDPOINT`          | Secret           | OSS 鑺傜偣 Endpoint锛屼緥濡?`oss-cn-hangzhou.aliyuncs.com`銆?        |
++| `OSS_ACCESS_KEY_ID`     | Secret           | 闃块噷浜?Access Key ID銆?                                          |
++| `OSS_ACCESS_KEY_SECRET` | Secret           | 闃块噷浜?Access Key Secret銆?                                      |
++| `OSS_UPLOAD_PREFIX`     | Variable锛堝彲閫夛級 | 涓婁紶鍒?Bucket 涓嬬殑瀛愮洰褰曪紝渚嬪 `releases/${{ github.run_id }}`銆?|
++| `CDN_REFRESH_ENDPOINT`  | Secret锛堝彲閫夛級   | CDN 鍒锋柊鎺ュ彛鍦板潃锛涚暀绌哄垯璺宠繃鍒锋柊姝ラ銆?                          |
++| `CDN_REFRESH_METHOD`    | Variable锛堝彲閫夛級 | CDN 鍒锋柊璇锋眰鏂规硶锛岄粯璁?`POST`銆?                                 |
++| `CDN_REFRESH_HEADERS`   | Secret锛堝彲閫夛級   | 澶氳 Header锛屾瘡琛?`KEY: VALUE`銆?                                |
++| `CDN_REFRESH_PAYLOAD`   | Secret锛堝彲閫夛級   | CDN 鍒锋柊璇锋眰浣擄紙JSON 绛夛級銆?                                     |
++
++> 濡傛灉闇€瑕佺伆搴︾洰褰曟垨鍥炴粴鑴氭湰锛屽彲鍦?`OSS_UPLOAD_PREFIX` 涓娇鐢ㄦ椂闂存埑 / 鐗堟湰鍙凤紙渚嬪 `releases/${{ github.ref_name }}/${{ github.run_number }}`锛夛紝骞朵繚鐣欏巻鍙蹭骇鐗╀互渚?`rollback`銆? 
+-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
++---
+ 
+-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
++## 鐩綍閫熻
+ 
+-## Learn More
++- `app/`锛欰pp Router 椤甸潰涓庡竷灞€锛屽凡瀹炵幇棣栭〉銆佷笓棰樸€佹ā鏉垮簱銆侀殣绉?鍗忚绛夋牳蹇冭矾鐢便€?+- `components/`锛氱珯鐐瑰ご閮ㄣ€侀〉鑴氥€侀潰鍖呭睉銆丆ookie Consent 绛夊鐢ㄧ粍浠躲€?+- `content/`锛氭枃绔犱笌妯℃澘绛夊唴瀹规簮锛屽€熷姪 Contentlayer 鍦ㄦ瀯寤烘湡鐢熸垚绫诲瀷鍖栨暟鎹€?+- `lib/`锛氱珯鐐瑰厓鏁版嵁銆佺瓫閫夐€昏緫銆佹牸寮忓寲宸ュ叿绛夐€氱敤鏂规硶銆?+- `docs/`锛氱珯鐐瑰缓璁鹃樁娈靛寲瑙勫垝锛坄绔欑偣寤鸿闃舵鍖栨€昏.md`锛夈€?+- `public/`锛氶潤鎬佽祫婧愩€? 
+-To learn more about Next.js, take a look at the following resources:
++---
+ 
+-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
++## 闃舵鍖栦换鍔¤繘灞曪紙鎽樿嚜 `docs/绔欑偣寤鸿闃舵鍖栨€昏.md`锛? 
+-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
++| 浠诲姟                        | 鐘舵€?| 璇存槑                                                   |
++| --------------------------- | ---- | ------------------------------------------------------ |
++| T5 鍒濆鍖栦唬鐮佷粨搴撲笌宸ョ▼瑙勮寖 | 鉁?  | Next.js + ESLint/Prettier/Husky/commitlint 宸插氨缁€?   |
++| T6 绔欑偣璺敱涓庝俊鎭灦鏋?      | 鉁?  | 棣栭〉銆佷笓棰樸€佹ā鏉裤€佸崗璁瓑鏍稿績璺敱瀹屾垚銆?                |
++| T7 Markdown 鍐呭绯荤粺        | 鉁?  | Contentlayer + MDX 娓叉煋銆佷唬鐮侀珮浜€乀OC 鏀寔銆?         |
++| T8 妯℃澘搴擄紙鍙瓫閫夛級         | 鉁?  | 鏂板妯℃澘鏁版嵁 JSON銆佺粍鍚堢瓫閫夈€乁RL 鍚屾銆佸鍒?涓嬭浇鎿嶄綔銆?|
++| T9 闅愮鏀跨瓥/鐢ㄦ埛鍗忚        | 鉁?  | 宸叉彁渚涘熀纭€椤甸潰涓?Cookie Consent 缁勪欢銆?                |
++| 鍏朵粬浠诲姟                    | 鈴?  | 瑙?`docs/绔欑偣寤鸿闃舵鍖栨€昏.md`锛屾寜闃舵鎺ㄨ繘銆?         |
+ 
+-## Deploy on Vercel
++---
+ 
+-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
++## 涓嬩竴姝ュ缓璁? 
+-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
++- 涓烘ā鏉垮簱涓殑鍗犱綅閾炬帴琛ラ綈鐪熷疄鎸囧紩/涓嬭浇鍦板潃锛屽苟鎵╁厖妯℃澘闆嗗悎銆?+- 琛ュ厖 RSS/缁熻銆侀儴缃叉祦姘寸嚎绛夊悗缁樁娈典换鍔°€?+- 鏍规嵁鍚堣瑕佹眰鎺ュ叆澶囨銆佺洃鎺с€佸畨鍏ㄥご绛栫暐銆俓*\*\* End Patch
+diff --git a/app/subscribe/page.tsx b/app/subscribe/page.tsx
+index 2e3bf59..b8b7255 100644
+--- a/app/subscribe/page.tsx
++++ b/app/subscribe/page.tsx
+@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
+ 
+ export const metadata: Metadata = {
+   title: "璁㈤槄鏇存柊",
+-  description: "璁㈤槄鏈€鏂版枃绔犮€佹ā鏉夸笌涓婄嚎妫€鏌ユ竻鍗曪紝鏀寔閭欢涓庝紒涓氬井淇￠€氱煡銆?,
++  description: "璁㈤槄鏈€鏂版枃绔犮€佹ā鏉夸笌涓婄嚎妫€鏌ユ竻鍗曪紝鏀寔閭欢涓庡井淇¤闃呭彿閫氱煡銆?,
+ };
+ 
+ export default function SubscribePage() {
+@@ -21,7 +21,7 @@ export default function SubscribePage() {
+         <h1 className="text-2xl font-semibold text-neutral-900 dark:text-white">璁㈤槄鏇存柊</h1>
+         <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+           璁㈤槄鍔熻兘灏嗗湪 T12 涓惤鍦帮紝鍖呭惈
+-          RSS銆侀偖浠跺弻閲嶇‘璁や笌浼佷笟寰俊鎺ㄩ€併€傚綋鍓嶉〉闈㈤鐣欐彁浜ゅ叆鍙ｏ紝骞惰鏄庝笂绾垮墠鍑嗗浜嬮」銆?+          RSS銆侀偖浠跺弻閲嶇‘璁や笌寰俊璁㈤槄鍙锋帹閫併€傚綋鍓嶉〉闈㈤鐣欐彁浜ゅ叆鍙ｏ紝骞惰鏄庝笂绾垮墠鍑嗗浜嬮」銆?         </p>
+       </header>
+ 
+@@ -63,11 +63,14 @@ export default function SubscribePage() {
+         </p>
+       </section>
+ 
+-      <section className="space-y-3">
+-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">WeCom 浼佷笟寰俊缇?/h2>
++      <section className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/80">
++        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">寰俊璁㈤槄鍙?/h2>
+         <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+-          浼佷笟寰俊璁㈤槄灏嗘彁渚涗换鍔℃竻鍗曟洿鏂版彁閱掋€佹ā鏉夸笂鏂颁笌瀹炴垬鍒嗕韩銆傝鍦ㄨ闃呭姛鑳戒笂绾垮悗鎵爜鍔犲叆銆?+          鎴戜滑灏嗛€氳繃寰俊璁㈤槄鍙锋帹閫侀樁娈典换鍔℃彁閱掋€佹ā鏉夸笂鏂颁笌瀹炴垬鍒嗕韩銆傝闃呭叆鍙ｄ笂绾垮悗鍙壂鐮佸叧娉紝绗竴鏃堕棿鑾峰彇鏇存柊銆?         </p>
++        <div className="rounded-xl border border-dashed border-neutral-300 bg-neutral-50 p-6 text-sm text-neutral-500 dark:border-neutral-700 dark:bg-neutral-900/40 dark:text-neutral-400">
++          褰撳墠闃舵锛氬噯澶囦腑銆傛垜浠細鍦?T12 瀹屾垚鍚庢彁渚涙寮忎簩缁寸爜鍙婂叧閿瓧鍥炲鎸囧紩銆?+        </div>
+       </section>
+     </div>
+   );
+diff --git a/app/templates/page.tsx b/app/templates/page.tsx
+index 379e12a..ea8124d 100644
+--- a/app/templates/page.tsx
++++ b/app/templates/page.tsx
+@@ -2,15 +2,28 @@ import type { Metadata } from "next";
+ 
+ import { Breadcrumbs } from "@/components/breadcrumbs";
+ import { templateLibrary } from "@/lib/mock-content";
++import {
++  applyTemplateFilters,
++  getTemplateFilterOptions,
++  parseTemplateFiltersFromObject,
++} from "@/lib/template-filters";
+ 
+-const categories = Array.from(new Set(templateLibrary.map((item) => item.category)));
++import { TemplateLibraryBrowser } from "./template-library-browser";
++
++type TemplatesPageProps = {
++  searchParams?: Record<string, string | string[] | undefined>;
++};
+ 
+ export const metadata: Metadata = {
+   title: "妯℃澘搴?,
+   description: "鍙洿鎺ュ鐢ㄧ殑鑷姩鍖栨祦绋嬫ā鏉匡紝瑕嗙洊閲囬泦銆佹不鐞嗐€佸闀夸笌鐩戞帶銆?,
+ };
+ 
+-export default function TemplatesPage() {
++export default function TemplatesPage({ searchParams = {} }: TemplatesPageProps) {
++  const filters = parseTemplateFiltersFromObject(searchParams);
++  const filterOptions = getTemplateFilterOptions(templateLibrary);
++  const initialMatches = applyTemplateFilters(templateLibrary, filters);
++
+   return (
+     <div className="space-y-10">
+       <Breadcrumbs
+@@ -23,64 +36,23 @@ export default function TemplatesPage() {
+       <header className="space-y-3">
+         <h1 className="text-2xl font-semibold text-neutral-900 dark:text-white">妯℃澘搴?/h1>
+         <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+-          妯℃澘灏嗕互 JSON 閰嶇疆 + 鎸囧紩鏂囨。鐨勫舰寮忔彁渚涳紝鍚庣画灏嗙粨鍚?T8
+-          鐨勭瓫閫夊姛鑳芥敮鎸佹寜鐓у钩鍙般€侀毦搴︺€佸満鏅繘琛岀粍鍚堣繃婊ゃ€?+          閫氳繃鍏抽敭璇嶄笌澶氱淮绛涢€夊揩閫熷畾浣嶅悎閫傜殑宸ヤ綔娴佹ā鏉匡紝褰撳墠鍏辨敹褰晎" "}
++          <span className="font-semibold text-neutral-900 dark:text-white">
++            {templateLibrary.length}
++          </span>{" "}
++          涓柟妗堛€?+        </p>
++        <p className="text-xs text-neutral-500 dark:text-neutral-400">
++          椤甸潰鍒濆灞曠ず {initialMatches.length} 涓尮閰嶇粨鏋滐紝璋冩暣绛涢€夋潯浠跺悗 URL
++          灏嗚嚜鍔ㄦ洿鏂帮紝鏂逛究鍒嗕韩涓庤璁恒€?         </p>
+       </header>
+ 
+-      <section className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm dark:border-neutral-800 dark:bg-neutral-900/80">
+-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">妯℃澘鍒嗙被</h2>
+-        <div className="mt-4 flex flex-wrap gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+-          {categories.map((category) => (
+-            <span
+-              key={category}
+-              className="rounded-full bg-neutral-100 px-3 py-1 dark:bg-neutral-800"
+-            >
+-              {category}
+-            </span>
+-          ))}
+-        </div>
+-      </section>
+-
+-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+-        {templateLibrary.map((template) => (
+-          <article
+-            id={template.slug}
+-            key={template.slug}
+-            className="flex h-full flex-col justify-between rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md dark:border-neutral-800 dark:bg-neutral-900/80"
+-          >
+-            <div className="space-y-3">
+-              <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+-                <span>{template.category}</span>
+-                <span>路</span>
+-                <span>{template.platform}</span>
+-              </div>
+-              <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">
+-                {template.title}
+-              </h2>
+-              <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
+-                {template.summary}
+-              </p>
+-            </div>
+-            <div className="mt-4 flex flex-wrap gap-2 text-xs text-neutral-500 dark:text-neutral-400">
+-              <span className="rounded-full bg-neutral-100 px-3 py-1 dark:bg-neutral-800">
+-                闅惧害锛歿template.difficulty}
+-              </span>
+-              {template.tags.map((tag) => (
+-                <span
+-                  key={tag}
+-                  className="rounded-full bg-neutral-100 px-3 py-1 dark:bg-neutral-800"
+-                >
+-                  {tag}
+-                </span>
+-              ))}
+-            </div>
+-            <p className="mt-6 text-xs text-neutral-400">
+-              鏈€杩戞洿鏂帮細{template.updatedAt} 路 鍗冲皢寮€鏀锯€滀竴閿鍒跺埌椤圭洰鈥濊兘鍔涖€?-            </p>
+-          </article>
+-        ))}
+-      </div>
++      <TemplateLibraryBrowser
++        templates={templateLibrary}
++        filterOptions={filterOptions}
++        initialFilters={filters}
++      />
+     </div>
+   );
+ }
+diff --git a/lib/mock-content.ts b/lib/mock-content.ts
+index 9e2e1fe..94b90f6 100644
+--- a/lib/mock-content.ts
++++ b/lib/mock-content.ts
+@@ -1,3 +1,5 @@
++import templatesData from "@/content/templates/library.json";
++
+ export type Topic = {
+   slug: string;
+   title: string;
+@@ -16,6 +18,10 @@ export type TemplateItem = {
+   difficulty: "鍏ラ棬" | "杩涢樁" | "涓撳";
+   updatedAt: string;
+   tags: string[];
++  resources: {
++    guideUrl: string;
++    packageUrl: string;
++  };
+ };
+ 
+ export const topics: Topic[] = [
+@@ -37,38 +43,7 @@ export const topics: Topic[] = [
+   },
+ ];
+ 
+-export const templateLibrary: TemplateItem[] = [
+-  {
+-    slug: "wechat-crawl-standard",
+-    title: "鍏紬鍙锋枃绔犻噰闆嗘爣鍑嗘祦绋?,
+-    summary: "Webhook + HTML Extract + 鏁忔劅璇嶈繃婊?+ 钀藉簱锛岄€傚悎涓皬鍥㈤槦蹇€熶笂绾裤€?,
+-    category: "閲囬泦",
+-    platform: "n8n",
+-    difficulty: "鍏ラ棬",
+-    updatedAt: "2025-01-11",
+-    tags: ["Webhook", "HTML Extract", "鏁版嵁搴?],
+-  },
+-  {
+-    slug: "content-curation-ai-review",
+-    title: "鍐呭绮鹃€変笌 AI 鍒濆娴佺▼",
+-    summary: "闆嗘垚 LLM 浣滄憳瑕佷笌鍏抽敭璇嶃€佷汉宸ュ鏍搁槦鍒楋紝鍏奸【鏁堢巼涓庨闄╂帶鍒躲€?,
+-    category: "鍐呭娌荤悊",
+-    platform: "n8n + OpenAI API",
+-    difficulty: "杩涢樁",
+-    updatedAt: "2025-01-05",
+-    tags: ["AI 瀹℃牳", "浜哄伐澶嶆牳", "闃熷垪"],
+-  },
+-  {
+-    slug: "multi-channel-distribution",
+-    title: "澶氭笭閬撳垎鍙戜笌鐩戞祴娴佺▼",
+-    summary: "涓€娆″彂甯冭嚜鍔ㄥ悓姝ュ埌鍏紬鍙枫€佺煡涔庛€佹帢閲戯紝骞惰窡韪洖娴佹暟鎹笌鏀跺綍鐘舵€併€?,
+-    category: "澧為暱",
+-    platform: "n8n + 椋炰功",
+-    difficulty: "涓撳",
+-    updatedAt: "2024-12-18",
+-    tags: ["鍙戝竷", "鐩戞帶", "椋炰功"],
+-  },
+-];
++export const templateLibrary: TemplateItem[] = templatesData as TemplateItem[];
+ 
+ export function getTopic(slug: string): Topic | undefined {
+   return topics.find((item) => item.slug === slug);
+diff --git a/package.json b/package.json
+index be94f32..f307fb8 100644
+--- a/package.json
++++ b/package.json
+@@ -3,7 +3,7 @@
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+-    "dev": "contentlayer dev --next dev",
++    "dev": "next dev",
+     "build": "contentlayer build && next build",
+     "start": "next start",
+     "lint": "eslint . --max-warnings=0",
+@@ -54,5 +54,6 @@
+       "prettier --check"
+     ],
+     "*.{mjs,cjs,json,css,scss,md,mdx}": "prettier --check"
+-  }
++  },
++  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+ }

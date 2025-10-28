@@ -1,0 +1,47 @@
+name: Deploy Static Site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "20"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build static site
+        run: yarn build
+
+      - name: Deploy to OSS
+        env:
+          OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
+          OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
+          OSS_ACCESS_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          OSS_ACCESS_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          OSS_UPLOAD_PREFIX: ${{ vars.OSS_UPLOAD_PREFIX }}
+          CDN_REFRESH_ENDPOINT: ${{ secrets.CDN_REFRESH_ENDPOINT }}
+          CDN_REFRESH_METHOD: ${{ vars.CDN_REFRESH_METHOD }}
+          CDN_REFRESH_HEADERS: ${{ secrets.CDN_REFRESH_HEADERS }}
+          CDN_REFRESH_PAYLOAD: ${{ secrets.CDN_REFRESH_PAYLOAD }}
+        run: bash scripts/deploy.sh

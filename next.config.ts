@@ -1,11 +1,10 @@
-import type { NextConfig } from "next";
 import { withContentlayer } from "next-contentlayer";
 
-const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
+const config = {
+  reactStrictMode: true,
+  experimental: {
+    typedRoutes: true,
   },
 };
 
-export default withContentlayer(nextConfig);
+export default withContentlayer(config);

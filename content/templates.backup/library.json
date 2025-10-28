@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "wechat-crawl-standard",
+    "title": "公众号文章采集标准流程",
+    "summary": "Webhook + HTML Extract + 敏感词过滤 + 落库，适合中小团队快速上线。",
+    "category": "采集",
+    "platform": "n8n",
+    "difficulty": "入门",
+    "updatedAt": "2025-01-11",
+    "tags": ["Webhook", "HTML Extract", "数据库"],
+    "resources": {
+      "guideUrl": "https://example.com/templates/wechat-crawl-standard",
+      "packageUrl": "https://example.com/templates/wechat-crawl-standard.json"
+    }
+  },
+  {
+    "slug": "content-curation-ai-review",
+    "title": "内容精选与 AI 初审流程",
+    "summary": "集成 LLM 作摘要与关键词、人工复核队列，兼顾效率与风险控制。",
+    "category": "内容治理",
+    "platform": "n8n + OpenAI API",
+    "difficulty": "进阶",
+    "updatedAt": "2025-01-05",
+    "tags": ["AI 审核", "人工复核", "队列"],
+    "resources": {
+      "guideUrl": "https://example.com/templates/content-curation-ai-review",
+      "packageUrl": "https://example.com/templates/content-curation-ai-review.json"
+    }
+  },
+  {
+    "slug": "multi-channel-distribution",
+    "title": "多渠道分发与监测流程",
+    "summary": "一次发布自动同步到公众号、知乎、掘金，并跟踪回流数据与收录状态。",
+    "category": "增长",
+    "platform": "n8n + 飞书",
+    "difficulty": "专家",
+    "updatedAt": "2024-12-18",
+    "tags": ["发布", "监控", "飞书"],
+    "resources": {
+      "guideUrl": "https://example.com/templates/multi-channel-distribution",
+      "packageUrl": "https://example.com/templates/multi-channel-distribution.json"
+    }
+  }
+]
