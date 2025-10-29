@@ -33,6 +33,16 @@ export function SiteFooter() {
         <p className="text-xs text-neutral-400 dark:text-neutral-500">
           © {year} {siteMetadata.shortName}. 保留所有权利。
         </p>
+        <p className="text-xs text-neutral-400 dark:text-neutral-500">
+          <a
+            href="https://beian.miit.gov.cn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
+          >
+            津ICP备17005439号
+          </a>
+        </p>
       </div>
     </footer>
   );
