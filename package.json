@@ -1,5 +1,8 @@
 {
   "packageManager": "yarn@1.22.22",
+  "name": "location-n8n",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,12 +15,9 @@
     "commitlint": "commitlint"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "contentlayer": "^0.3.4",
->>>>>>> 918a20b (feat: 添加N8N工作流市场网站)
     "github-slugger": "^2.0.0",
     "lucide-react": "^0.562.0",
     "mdast-util-to-string": "^4.0.0",
@@ -29,20 +29,17 @@
     "rehype-pretty-code": "^0.14.1",
     "rehype-slug": "^6.0.0",
     "remark-autolink-headings": "^8.0.0",
-    "remark-gfm": "3.0.1",
-    "remark-parse": "10.0.1",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.1",
     "remark-slug": "^8.0.0",
     "shiki": "^3.13.0",
-<<<<<<< HEAD
-    "unified": "10.1.2",
-=======
     "tailwind-merge": "^3.4.0",
->>>>>>> 918a20b (feat: 添加N8N工作流市场网站)
+    "unified": "^10.1.2",
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/config-conventional": "^20.1.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
