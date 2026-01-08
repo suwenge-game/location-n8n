@@ -12,7 +12,14 @@
     "commitlint": "commitlint"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "contentlayer": "^0.3.4",
+>>>>>>> 918a20b (feat: 添加N8N工作流市场网站)
     "github-slugger": "^2.0.0",
+    "lucide-react": "^0.562.0",
     "mdast-util-to-string": "^4.0.0",
     "next": "15.5.5",
     "react": "19.1.0",
@@ -26,7 +33,11 @@
     "remark-parse": "10.0.1",
     "remark-slug": "^8.0.0",
     "shiki": "^3.13.0",
+<<<<<<< HEAD
     "unified": "10.1.2",
+=======
+    "tailwind-merge": "^3.4.0",
+>>>>>>> 918a20b (feat: 添加N8N工作流市场网站)
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {

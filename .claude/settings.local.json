@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(ui-ux-pro-max)",
+      "Bash(python:*)",
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(npx next dev:*)",
+      "Bash(set:*)",
+      "Bash(tasklist:*)",
+      "Bash(curl:*)",
+      "Bash(if exist:*)"
+    ]
+  }
+}
