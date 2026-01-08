@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { Rocket, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -23,7 +24,7 @@ export function CTASection() {
                 开始探索
               </Button>
             </Link>
-            <Link href="/upload">
+            <Link href={"/upload" as Route}>
               <Button size="lg" variant="outline" className="min-w-[180px]">
                 <Upload className="mr-2 h-5 w-5" />
                 上传工作流

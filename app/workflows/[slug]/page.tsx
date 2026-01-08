@@ -4,17 +4,24 @@ import { ChevronRight, Home } from "lucide-react";
 import { WorkflowPreview } from "@/components/workflow-detail/workflow-preview";
 import { WorkflowInfo } from "@/components/workflow-detail/workflow-info";
 import { RelatedWorkflows } from "@/components/workflow-detail/related-workflows";
-import { getWorkflowBySlug, getRelatedWorkflows } from "@/lib/mock-workflows";
+import { getWorkflowBySlug, getRelatedWorkflows, workflows } from "@/lib/mock-workflows";
 import { ROUTES } from "@/lib/constants";
 
 interface WorkflowPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export function generateMetadata({ params }: WorkflowPageProps) {
-  const workflow = getWorkflowBySlug(params.slug);
+export async function generateStaticParams() {
+  return workflows.map((workflow) => ({
+    slug: workflow.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: WorkflowPageProps) {
+  const { slug } = await params;
+  const workflow = getWorkflowBySlug(slug);
 
   if (!workflow) {
     return {
@@ -28,8 +35,9 @@ export function generateMetadata({ params }: WorkflowPageProps) {
   };
 }
 
-export default function WorkflowPage({ params }: WorkflowPageProps) {
-  const workflow = getWorkflowBySlug(params.slug);
+export default async function WorkflowPage({ params }: WorkflowPageProps) {
+  const { slug } = await params;
+  const workflow = getWorkflowBySlug(slug);
 
   if (!workflow) {
     notFound();

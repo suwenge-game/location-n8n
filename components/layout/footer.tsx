@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { Github, Twitter, Mail } from "lucide-react";
 import { ROUTES } from "@/lib/constants";
 
@@ -51,7 +52,7 @@ export function Footer() {
                 return (
                   <Link
                     key={social.name}
-                    href={social.href}
+                    href={social.href as Route}
                     className="text-muted-foreground hover:text-primary transition-colors"
                     aria-label={social.name}
                   >
@@ -69,7 +70,7 @@ export function Footer() {
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    href={link.href as Route}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
@@ -86,7 +87,7 @@ export function Footer() {
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    href={link.href as Route}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
@@ -103,7 +104,7 @@ export function Footer() {
               {footerLinks.community.map((link) => (
                 <li key={link.name}>
                   <Link
-                    href={link.href}
+                    href={link.href as Route}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"

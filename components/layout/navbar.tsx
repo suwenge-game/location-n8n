@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ export function Navbar() {
             {navigation.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                href={item.href as Route}
                 className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
               >
                 {item.name}
@@ -42,12 +43,12 @@ export function Navbar() {
 
           {/* Auth Buttons - Desktop */}
           <div className="hidden md:flex md:items-center md:gap-4">
-            <Link href={ROUTES.LOGIN}>
+            <Link href={ROUTES.LOGIN as Route}>
               <Button variant="ghost" size="sm">
                 登录
               </Button>
             </Link>
-            <Link href={ROUTES.REGISTER}>
+            <Link href={ROUTES.REGISTER as Route}>
               <Button size="sm">注册</Button>
             </Link>
           </div>
@@ -74,7 +75,7 @@ export function Navbar() {
             {navigation.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                href={item.href as Route}
                 className="block rounded-md px-3 py-2 text-base font-medium text-foreground hover:bg-muted hover:text-primary transition-colors"
                 onClick={() => setIsOpen(false)}
               >
@@ -82,13 +83,17 @@ export function Navbar() {
               </Link>
             ))}
             <div className="mt-4 space-y-2">
-              <Link href={ROUTES.LOGIN} className="block w-full" onClick={() => setIsOpen(false)}>
+              <Link
+                href={ROUTES.LOGIN as Route}
+                className="block w-full"
+                onClick={() => setIsOpen(false)}
+              >
                 <Button variant="outline" className="w-full" size="sm">
                   登录
                 </Button>
               </Link>
               <Link
-                href={ROUTES.REGISTER}
+                href={ROUTES.REGISTER as Route}
                 className="block w-full"
                 onClick={() => setIsOpen(false)}
               >

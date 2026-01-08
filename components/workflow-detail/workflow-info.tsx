@@ -102,12 +102,14 @@ export function WorkflowInfo({ workflow }: WorkflowInfoProps) {
                 </div>
               ) : (
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold text-primary">${workflow.price}</span>
-                  {workflow.originalPrice && workflow.originalPrice > workflow.price && (
-                    <span className="text-lg text-muted-foreground line-through">
-                      ${workflow.originalPrice}
-                    </span>
-                  )}
+                  <span className="text-3xl font-bold text-primary">${workflow.price ?? 0}</span>
+                  {workflow.originalPrice &&
+                    workflow.price &&
+                    workflow.originalPrice > workflow.price && (
+                      <span className="text-lg text-muted-foreground line-through">
+                        ${workflow.originalPrice}
+                      </span>
+                    )}
                 </div>
               )}
             </div>

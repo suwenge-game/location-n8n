@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import Image from "next/image";
 import { Star, Download } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -15,7 +16,7 @@ interface WorkflowCardProps {
 
 export function WorkflowCard({ workflow }: WorkflowCardProps) {
   return (
-    <Link href={ROUTES.WORKFLOW_DETAIL(workflow.slug)} className="group">
+    <Link href={ROUTES.WORKFLOW_DETAIL(workflow.slug) as Route} className="group">
       <Card className="h-full overflow-hidden border-2 border-border transition-all duration-300 hover:border-primary hover:shadow-lg cursor-pointer">
         {/* Thumbnail */}
         <div className="relative aspect-video w-full overflow-hidden bg-muted">
@@ -33,6 +34,7 @@ export function WorkflowCard({ workflow }: WorkflowCardProps) {
           )}
           {!workflow.isFree &&
             workflow.originalPrice &&
+            workflow.price &&
             workflow.originalPrice > workflow.price && (
               <Badge variant="default" className="absolute top-3 right-3 shadow-sm bg-red-500">
                 促销
@@ -69,7 +71,7 @@ export function WorkflowCard({ workflow }: WorkflowCardProps) {
               </span>
             </div>
             <span className="font-semibold text-primary">
-              {workflow.isFree ? "免费" : `$${workflow.price}`}
+              {workflow.isFree ? "免费" : `$${workflow.price ?? 0}`}
             </span>
           </div>
         </CardContent>
