@@ -17,15 +17,15 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-4 left-4 right-4 z-50 bg-card/80 backdrop-blur-md border border-border rounded-xl shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href={ROUTES.HOME} className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-              <span className="text-lg font-bold text-white">N</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+              <span className="text-xl font-bold text-white">N</span>
             </div>
-            <span className="text-xl font-bold text-foreground">N8N Hub</span>
+            <span className="text-2xl font-bold text-foreground">N8N Hub</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -34,7 +34,7 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href as Route}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                className="text-base font-semibold text-foreground/80 hover:text-primary transition-colors"
               >
                 {item.name}
               </Link>
@@ -44,12 +44,12 @@ export function Navbar() {
           {/* Auth Buttons - Desktop */}
           <div className="hidden md:flex md:items-center md:gap-4">
             <Link href={ROUTES.LOGIN as Route}>
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="default">
                 登录
               </Button>
             </Link>
             <Link href={ROUTES.REGISTER as Route}>
-              <Button size="sm">注册</Button>
+              <Button size="default">注册</Button>
             </Link>
           </div>
 
