@@ -34,7 +34,7 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href as Route}
-                className="text-base font-semibold text-foreground/80 hover:text-primary transition-colors"
+                className="text-lg font-semibold text-foreground/80 hover:text-primary transition-colors"
               >
                 {item.name}
               </Link>
