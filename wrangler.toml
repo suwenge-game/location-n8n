@@ -1,0 +1,20 @@
+name = "location-n8n"
+compatibility_date = "2024-01-01"
+
+[build]
+command = "npm run build"
+cwd = "."
+watch_paths = ["app/**", "components/**", "lib/**", "package.json"]
+
+[build.environment]
+NODE_VERSION = "18"
+NPM_VERSION = "10"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+
+[assets]
+directory = "out"
+binding = "ASSETS"
