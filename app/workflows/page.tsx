@@ -23,10 +23,18 @@ export default function WorkflowsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [isClient, setIsClient] = useState(false);
   const itemsPerPage = 9; // 每页显示 9 个工作流
+
+  // Ensure client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Initialize state from URL params
   useEffect(() => {
+    if (!isClient) return;
+
     const category = searchParams.get("category");
     const search = searchParams.get("search");
     const price = searchParams.get("price");
@@ -45,7 +53,7 @@ export default function WorkflowsPage() {
     }, 800);
 
     return () => clearTimeout(timer);
-  }, [searchParams]);
+  }, [searchParams, isClient]);
 
   // Filter and sort workflows
   const filteredWorkflows = useMemo(() => {
@@ -144,7 +152,9 @@ export default function WorkflowsPage() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-foreground">{getCategoryName()}</h1>
-            <p className="text-muted-foreground">找到 {filteredWorkflows.length} 个工作流</p>
+            <p className="text-muted-foreground">
+              {isClient ? `找到 ${filteredWorkflows.length} 个工作流` : '加载中...'}
+            </p>
           </div>
           <Button
             variant="outline"
@@ -229,7 +239,7 @@ export default function WorkflowsPage() {
 
         {/* Workflow Grid */}
         <div className="flex-1 space-y-8">
-          {isLoading ? (
+          {!isClient || isLoading ? (
             <WorkflowGrid workflows={[]} loading={true} />
           ) : filteredWorkflows.length > 0 ? (
             <>
