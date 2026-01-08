@@ -1,15 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { WorkflowGrid } from "@/components/workflows/workflow-grid";
 import { FilterSidebar } from "@/components/workflows/filter-sidebar";
+import { Pagination } from "@/components/workflows/pagination";
 import { workflows, categories } from "@/lib/mock-workflows";
 import { SORT_OPTIONS } from "@/lib/constants";
 
 export default function WorkflowsPage() {
+  const searchParams = useSearchParams();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedPrice, setSelectedPrice] = useState<string>("all");
@@ -17,6 +21,31 @@ export default function WorkflowsPage() {
   const [selectedPlatform, setSelectedPlatform] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<"latest" | "popular" | "rating" | "downloads">("latest");
   const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const itemsPerPage = 9; // 每页显示 9 个工作流
+
+  // Initialize state from URL params
+  useEffect(() => {
+    const category = searchParams.get("category");
+    const search = searchParams.get("search");
+    const price = searchParams.get("price");
+    const sort = searchParams.get("sort");
+
+    if (category) setSelectedCategory(category);
+    if (search) setSearchQuery(search);
+    if (price) setSelectedPrice(price);
+    if (sort && ["latest", "popular", "rating", "downloads"].includes(sort)) {
+      setSortBy(sort as "latest" | "popular" | "rating" | "downloads");
+    }
+
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [searchParams]);
 
   // Filter and sort workflows
   const filteredWorkflows = useMemo(() => {
@@ -80,12 +109,26 @@ export default function WorkflowsPage() {
     return filtered;
   }, [searchQuery, selectedCategory, selectedPrice, selectedDifficulty, selectedPlatform, sortBy]);
 
+  // Pagination
+  const totalPages = Math.ceil(filteredWorkflows.length / itemsPerPage);
+  const paginatedWorkflows = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredWorkflows.slice(startIndex, endIndex);
+  }, [filteredWorkflows, currentPage, itemsPerPage]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedPrice, selectedDifficulty, selectedPlatform, sortBy]);
+
   const handleReset = () => {
     setSearchQuery("");
     setSelectedCategory("");
     setSelectedPrice("all");
     setSelectedDifficulty([]);
     setSelectedPlatform([]);
+    setCurrentPage(1);
   };
 
   const getCategoryName = () => {
@@ -185,9 +228,18 @@ export default function WorkflowsPage() {
         )}
 
         {/* Workflow Grid */}
-        <div className="flex-1">
-          {filteredWorkflows.length > 0 ? (
-            <WorkflowGrid workflows={filteredWorkflows} />
+        <div className="flex-1 space-y-8">
+          {isLoading ? (
+            <WorkflowGrid workflows={[]} loading={true} />
+          ) : filteredWorkflows.length > 0 ? (
+            <>
+              <WorkflowGrid workflows={paginatedWorkflows} />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
+            </>
           ) : (
             <div className="py-16 text-center">
               <p className="text-lg text-muted-foreground mb-4">没有找到符合条件的工作流</p>

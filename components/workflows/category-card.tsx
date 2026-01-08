@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Category } from "@/types/workflow";
@@ -10,8 +11,10 @@ interface CategoryCardProps {
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
+  const href = `/workflows?category=${category.slug}` as Route;
+
   return (
-    <Link href={`/workflows?category=${category.slug}`}>
+    <Link href={href}>
       <Card className="h-full transition-all duration-300 hover:shadow-lg hover:border-2 hover:border-primary cursor-pointer border-2">
         <CardContent className="p-6">
           <div
