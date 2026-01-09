@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ import { Pagination } from "@/components/workflows/pagination";
 import { workflows, categories } from "@/lib/mock-workflows";
 import { SORT_OPTIONS } from "@/lib/constants";
 
-export default function WorkflowsPage() {
+function WorkflowsPageContent() {
   const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -258,6 +258,52 @@ export default function WorkflowsPage() {
               </Button>
             </div>
           )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function WorkflowsPage() {
+  return (
+    <Suspense fallback={<WorkflowsLoading />}>
+      <WorkflowsPageContent />
+    </Suspense>
+  );
+}
+
+function WorkflowsLoading() {
+  return (
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="space-y-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">全部工作流</h1>
+            <p className="text-muted-foreground">加载中...</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters and Grid */}
+      <div className="flex flex-col gap-8 lg:flex-row">
+        <aside className="hidden lg:block lg:w-64 lg:flex-shrink-0">
+          <div className="sticky top-28">
+            <div className="rounded-xl border-2 border-border bg-card p-6">
+              <div className="space-y-6">
+                <div className="h-6 bg-muted rounded animate-pulse"></div>
+                <div className="space-y-2">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-10 bg-muted rounded animate-pulse"></div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div className="flex-1">
+          <WorkflowGrid workflows={[]} loading={true} />
         </div>
       </div>
     </div>
