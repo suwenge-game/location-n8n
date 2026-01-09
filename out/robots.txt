@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /api/
+
+User-Agent: Googlebot
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml

@@ -25,6 +25,7 @@ export interface Workflow {
   videoUrl?: string;
   documentation?: string;
   license: "MIT" | "Apache-2.0" | "GPL-3.0" | "Proprietary";
+  sampleJson?: object;
 }
 
 export interface Author {

@@ -5,6 +5,7 @@ import type { Route } from "next";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ROUTES } from "@/lib/constants";
 
 export function Navbar() {
@@ -43,6 +44,7 @@ export function Navbar() {
 
           {/* Auth Buttons - Desktop */}
           <div className="hidden md:flex md:items-center md:gap-4">
+            <ThemeToggle />
             <Link href={ROUTES.LOGIN as Route}>
               <Button variant="ghost" size="default">
                 登录

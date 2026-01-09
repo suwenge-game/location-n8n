@@ -1,5 +1,6 @@
 export const SITE_NAME = "N8N Hub";
 export const SITE_DESCRIPTION = "发现和分享最佳N8N自动化工作流，节省10倍开发时间";
+export const SITE_URL = "https://yourdomain.com"; // 替换为您的实际域名
 
 export const ROUTES = {
   HOME: "/",

@@ -143,6 +143,88 @@ export const workflows: Workflow[] = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     documentation: "https://docs.example.com/slack-automation",
     license: "MIT",
+    sampleJson: {
+      name: "Slack实时通知自动化",
+      nodes: [
+        {
+          parameters: {
+            httpMethod: "POST",
+            path: "webhook",
+            responseMode: "lastNode",
+            options: {},
+          },
+          id: "8a7b9c3d-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
+          name: "Webhook触发器",
+          type: "n8n-nodes-base.webhook",
+          typeVersion: 1,
+          position: [240, 300],
+          webhookId: "slack-webhook-trigger",
+        },
+        {
+          parameters: {
+            conditions: {
+              string: [
+                {
+                  value1: "={{ $json.event }}",
+                  operation: "equals",
+                  value2: "error",
+                },
+              ],
+            },
+          },
+          id: "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+          name: "条件判断",
+          type: "n8n-nodes-base.if",
+          typeVersion: 1,
+          position: [460, 300],
+        },
+        {
+          parameters: {
+            channel: "#alerts",
+            text: "={{ $json.message }}",
+            otherOptions: {},
+          },
+          id: "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+          name: "发送到Slack",
+          type: "n8n-nodes-base.slack",
+          typeVersion: 1,
+          position: [680, 200],
+          credentials: {
+            slackApi: {
+              id: "1",
+              name: "Slack API",
+            },
+          },
+        },
+      ],
+      connections: {
+        条件判断: {
+          main: [
+            [
+              {
+                node: "发送到Slack",
+                type: "main",
+                index: 0,
+              },
+            ],
+          ],
+        },
+        Webhook触发器: {
+          main: [
+            [
+              {
+                node: "条件判断",
+                type: "main",
+                index: 0,
+              },
+            ],
+          ],
+        },
+      },
+      active: false,
+      settings: {},
+      id: "1",
+    },
   },
   {
     id: "wf-2",
