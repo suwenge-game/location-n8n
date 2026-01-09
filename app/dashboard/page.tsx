@@ -4,8 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Route } from "next";
 import { User, ShoppingBag, Heart, Settings, LogOut, Download, CreditCard } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ROUTES } from "@/lib/constants";
 import type { Workflow } from "@/types/workflow";
@@ -215,11 +216,12 @@ export default function DashboardPage() {
                     <Card key={workflow.id} className="border-2">
                       <CardContent className="p-6">
                         <div className="flex gap-4">
-                          <div className="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden">
-                            <img
+                          <div className="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+                            <Image
                               src={workflow.thumbnail}
                               alt={workflow.title}
-                              className="h-full w-full object-cover"
+                              fill
+                              className="object-cover"
                             />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -240,11 +242,11 @@ export default function DashboardPage() {
                             <Download className="h-4 w-4" />
                             下载
                           </Button>
-                          <Button size="sm" variant="outline" asChild>
-                            <Link href={ROUTES.WORKFLOW_DETAIL(workflow.slug) as Route}>
+                          <Link href={ROUTES.WORKFLOW_DETAIL(workflow.slug) as Route}>
+                            <Button size="sm" variant="outline">
                               查看详情
-                            </Link>
-                          </Button>
+                            </Button>
+                          </Link>
                         </div>
                       </CardContent>
                     </Card>
@@ -262,11 +264,12 @@ export default function DashboardPage() {
                     <Card key={workflow.id} className="border-2">
                       <CardContent className="p-6">
                         <div className="flex gap-4">
-                          <div className="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden">
-                            <img
+                          <div className="relative h-24 w-24 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+                            <Image
                               src={workflow.thumbnail}
                               alt={workflow.title}
-                              className="h-full w-full object-cover"
+                              fill
+                              className="object-cover"
                             />
                           </div>
                           <div className="flex-1 min-w-0">
@@ -285,11 +288,11 @@ export default function DashboardPage() {
                           </div>
                         </div>
                         <div className="mt-4 flex gap-2">
-                          <Button size="sm" variant="outline" className="flex-1" asChild>
-                            <Link href={ROUTES.WORKFLOW_DETAIL(workflow.slug) as Route}>
+                          <Link href={ROUTES.WORKFLOW_DETAIL(workflow.slug) as Route} className="flex-1">
+                            <Button size="sm" variant="outline" className="w-full">
                               查看详情
-                            </Link>
-                          </Button>
+                            </Button>
+                          </Link>
                           <Button size="sm" variant="outline">
                             <Heart className="h-4 w-4 fill-red-500 text-red-500" />
                           </Button>

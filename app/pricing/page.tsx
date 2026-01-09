@@ -173,16 +173,18 @@ export default function PricingPage() {
                 </ul>
 
                 {/* CTA Button */}
-                <Button
-                  className="w-full"
-                  variant={plan.popular ? "default" : "outline"}
-                  size="lg"
-                  asChild
+                <Link
+                  href={plan.price[billingCycle] === 0 ? ROUTES.REGISTER as Route : ROUTES.WORKFLOWS as Route}
+                  className="block"
                 >
-                  <Link href={plan.price[billingCycle] === 0 ? ROUTES.REGISTER as Route : ROUTES.WORKFLOWS as Route}>
+                  <Button
+                    className="w-full"
+                    variant={plan.popular ? "default" : "outline"}
+                    size="lg"
+                  >
                     {plan.cta}
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           );
@@ -238,9 +240,11 @@ export default function PricingPage() {
           <Button size="lg" variant="default">
             联系销售
           </Button>
-          <Button size="lg" variant="outline" asChild>
-            <Link href={ROUTES.WORKFLOWS as Route}>查看工作流</Link>
-          </Button>
+          <Link href={ROUTES.WORKFLOWS as Route}>
+            <Button size="lg" variant="outline">
+              查看工作流
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
