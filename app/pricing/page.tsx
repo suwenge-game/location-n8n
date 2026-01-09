@@ -117,7 +117,7 @@ export default function PricingPage() {
             按年付费
           </button>
           {billingCycle === "yearly" && (
-            <Badge variant="accent" className="ml-2">省17%</Badge>
+            <Badge variant="success" className="ml-2">省17%</Badge>
           )}
         </div>
       </section>
