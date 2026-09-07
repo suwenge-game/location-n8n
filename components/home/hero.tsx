@@ -98,7 +98,7 @@ export function Hero() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
-          <Link href={"/docs" as Route}>
+          <Link href={ROUTES.DOCS as Route}>
             <Button size="lg" variant="outline" className="min-w-[160px]">
               查看文档
             </Button>

@@ -7,7 +7,7 @@ export const ROUTES = {
   HOME: "/",
   WORKFLOWS: "/workflows",
   WORKFLOW_DETAIL: (slug: string) => `/workflows/${slug}`,
-  DOCS: "/docs",
+  DOCS: "/articles",
   PRICING: "/pricing",
   LOGIN: "/login",
   REGISTER: "/register",
