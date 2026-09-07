@@ -1,9 +1,9 @@
 import { WorkflowCard } from "./workflow-card";
 import { WorkflowCardSkeleton } from "./workflow-card-skeleton";
-import type { Workflow } from "@/types/workflow";
+import type { RealWorkflow } from "@/lib/real-workflows";
 
 interface WorkflowGridProps {
-  workflows: Workflow[];
+  workflows: RealWorkflow[];
   loading?: boolean;
 }
 

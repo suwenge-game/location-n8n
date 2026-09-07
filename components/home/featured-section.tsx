@@ -1,11 +1,12 @@
-import type { Workflow } from "@/types/workflow";
+import type { RealWorkflow } from "@/lib/real-workflows";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { WorkflowGrid } from "@/components/workflows/workflow-grid";
 import { ROUTES } from "@/lib/constants";
 
 interface FeaturedSectionProps {
-  workflows: Workflow[];
+  workflows: RealWorkflow[];
+  totalCount?: number;
   title?: string;
   description?: string;
 }
@@ -14,6 +15,7 @@ export function FeaturedSection({
   workflows,
   title = "精选工作流",
   description = "最受欢迎的工作流模板",
+  totalCount,
 }: FeaturedSectionProps) {
   return (
     <section className="py-12">
@@ -26,7 +28,7 @@ export function FeaturedSection({
           href={ROUTES.WORKFLOWS}
           className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
         >
-          查看全部
+          查看全部{totalCount ? ` ${totalCount} 个` : ""}
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
@@ -34,7 +36,7 @@ export function FeaturedSection({
       <div className="mt-8 text-center sm:hidden">
         <Link href={ROUTES.WORKFLOWS}>
           <button className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
-            查看全部工作流
+            查看全部{totalCount ? ` ${totalCount} 个工作流` : "工作流"}
             <ArrowRight className="h-4 w-4" />
           </button>
         </Link>

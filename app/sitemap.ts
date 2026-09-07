@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { workflows } from "@/lib/mock-workflows";
+import { realWorkflows } from "@/lib/real-workflows";
 
 export const dynamic = "force-static";
 
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // 工作流详情页
-  const workflowPages = workflows.map((workflow) => ({
+  const workflowPages = realWorkflows.map((workflow) => ({
     url: `${baseUrl}/workflows/${workflow.slug}`,
     lastModified: new Date(workflow.updatedAt),
     changeFrequency: "weekly" as const,

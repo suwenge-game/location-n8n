@@ -1,8 +1,8 @@
 import { WorkflowGrid } from "@/components/workflows/workflow-grid";
-import type { Workflow } from "@/types/workflow";
+import type { RealWorkflow } from "@/lib/real-workflows";
 
 interface RelatedWorkflowsProps {
-  workflows: Workflow[];
+  workflows: RealWorkflow[];
 }
 
 export function RelatedWorkflows({ workflows }: RelatedWorkflowsProps) {
