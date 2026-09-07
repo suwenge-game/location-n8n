@@ -1,5 +1,6 @@
-export const SITE_NAME = "N8N Hub";
-export const SITE_DESCRIPTION = "发现和分享最佳N8N自动化工作流，节省10倍开发时间";
+export const SITE_NAME = "N8N Hub - AI Agent 与自动化工作流实战教程";
+export const SITE_DESCRIPTION =
+  "N8N Hub 专注 AI Agent 与自动化工作流实战，提供可复现的 RAG 知识库、智能客服、内容生产流水线教程，以及经过验证的 N8N 工作流模板、节点配置方法、提示词设计和故障排查清单，帮助个人与团队把 AI 能力稳定接入真实业务。";
 export const SITE_URL = "https://yourdomain.com"; // 替换为您的实际域名
 
 export const ROUTES = {

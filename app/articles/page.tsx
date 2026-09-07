@@ -2,15 +2,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { getAllArticles } from "@/lib/articles";
 import { formatDate, formatReadingTime } from "@/lib/formatters";
 import { topics } from "@/lib/mock-content";
-import { mockArticles } from "@/lib/mock-content";
 
 const topicMap = new Map(topics.map((topic) => [topic.slug, topic.title]));
-
-const publishedArticles = mockArticles
-  .filter((article) => article.status !== "draft")
-  .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 
 export const metadata: Metadata = {
   title: "文章中心",
@@ -18,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function ArticlesPage() {
+  const publishedArticles = getAllArticles();
   return (
     <div className="space-y-10">
       <Breadcrumbs

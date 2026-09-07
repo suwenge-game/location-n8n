@@ -76,6 +76,16 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider>
           <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-Q087PKG27K"
+            strategy="afterInteractive"
+          />
+          <Script id="ga4" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-Q087PKG27K');`}
+          </Script>
+          <Script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9132117639313977"
             strategy="afterInteractive"
