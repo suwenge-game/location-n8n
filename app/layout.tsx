@@ -52,9 +52,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  ...(process.env.GSC_VERIFICATION_CODE
+    ? { verification: { google: process.env.GSC_VERIFICATION_CODE } }
+    : {}),
 };
 
 export default function RootLayout({
