@@ -1,0 +1,3 @@
+# www → apex 301：www.flowhub.blog 已解析并返回同一份内容，
+# 缺这一步会形成重复站点，且 AdSense/GSC 域名归属会被 www 分流。
+https://www.flowhub.blog/*  https://flowhub.blog/:splat  301

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { ChevronRight, ExternalLink, GitBranch, Home } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { realWorkflows, type RealWorkflow } from "@/lib/real-workflows";
-import { ROUTES, SITE_NAME, SITE_URL } from "@/lib/constants";
+import { ROUTES, SITE_NAME } from "@/lib/constants";
 
 interface WorkflowPageProps {
   params: Promise<{ slug: string }>;
@@ -74,7 +74,8 @@ export async function generateMetadata({ params }: WorkflowPageProps): Promise<M
   return {
     title: `${workflow.title} 拆解 | ${SITE_NAME}`,
     description: workflow.description,
-    alternates: { canonical: `${SITE_URL}/workflows/${slug}` },
+    // 相对路径交由 metadataBase + trailingSlash 归一，避免与 sitemap 形式不一致
+    alternates: { canonical: `/workflows/${slug}` },
   };
 }
 

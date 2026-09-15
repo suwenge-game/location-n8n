@@ -11,6 +11,7 @@ const topicMap = new Map(topics.map((topic) => [topic.slug, topic.title]));
 export const metadata: Metadata = {
   title: "文章中心",
   description: "沉淀自动化项目中的最佳实践、风险提示与标准化清单。",
+  alternates: { canonical: "/articles" },
 };
 
 export default function ArticlesPage() {

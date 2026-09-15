@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
+
 import { Hero } from "@/components/home/hero";
 import { CategoryGrid } from "@/components/workflows/category-grid";
 import { FeaturedSection } from "@/components/home/featured-section";
 import { TrustSection } from "@/components/home/trust-section";
 import { CTASection } from "@/components/home/cta-section";
 import { realWorkflows } from "@/lib/real-workflows";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const categoryMeta = Array.from(
   realWorkflows
