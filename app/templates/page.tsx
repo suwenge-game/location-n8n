@@ -8,6 +8,7 @@ const categories = Array.from(new Set(templateLibrary.map((item) => item.categor
 export const metadata: Metadata = {
   title: "模板库",
   description: "可直接复用的自动化流程模板，覆盖采集、治理、增长与监控。",
+  alternates: { canonical: "/templates" },
 };
 
 export default function TemplatesPage() {

@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 export const metadata: Metadata = {
   title: "站内搜索",
   description: "查找文章、模板与专题。后续将集成基于 Contentlayer 的静态索引与客户端过滤。",
+  alternates: { canonical: "/search" },
 };
 
 export default function SearchPage() {

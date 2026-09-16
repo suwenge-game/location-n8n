@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 export const metadata: Metadata = {
   title: "订阅更新",
   description: "订阅最新文章、模板与上线检查清单，支持邮件与企业微信通知。",
+  alternates: { canonical: "/subscribe" },
 };
 
 export default function SubscribePage() {

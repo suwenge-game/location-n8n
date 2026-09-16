@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "关于 N8N Hub",
   description:
     "了解 N8N Hub 如何通过可复现教程、经过验证的工作流模板和工程化排错方法，帮助团队把 AI Agent 与自动化真正用于业务。",
+  alternates: { canonical: "/about" },
 };
 
 const directions = [

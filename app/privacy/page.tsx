@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 export const metadata: Metadata = {
   title: "隐私政策",
   description: "说明站点收集与使用数据的范围、目的与保护措施。",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

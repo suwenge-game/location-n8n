@@ -6,6 +6,7 @@ import { CookiePreferencesTrigger } from "@/components/cookie-consent";
 export const metadata: Metadata = {
   title: "Cookie 使用说明",
   description: "了解我们在站点中使用的 Cookie 类型与用途，并管理您的偏好设置。",
+  alternates: { canonical: "/cookies" },
 };
 
 const COOKIE_CATEGORIES = [

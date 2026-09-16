@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 export const metadata: Metadata = {
   title: "用户协议",
   description: "约定站点使用范围、责任划分及内容版权。",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

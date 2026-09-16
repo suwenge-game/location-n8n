@@ -7,6 +7,7 @@ import { topics } from "@/lib/mock-content";
 export const metadata: Metadata = {
   title: "专题导航",
   description: "按问题域梳理的专题，覆盖采集、治理、分发与运营自动化。",
+  alternates: { canonical: "/topics" },
 };
 
 export default function TopicsPage() {
